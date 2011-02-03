@@ -1,0 +1,31 @@
+*{
+margin:0;
+padding:0;
+}
+
+html,body {
+width:100%;
+height:100%;
+}
+
+body {
+background-color:#1e1000;
+color:#ffeedc;
+}
+
+a img{
+border:none;
+}
+
+a {
+
+}
+
+#mainBox {
+text-align:center;
+margin-top:200px;
+}
+
+.generateBtnBox {
+margin-top:95px;
+}

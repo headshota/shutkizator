@@ -8,15 +8,7 @@ class ShutksController extends AppController {
 		$this->set('shutks', $this->paginate());
 	}
 
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid shutk', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->set('shutk', $this->Shutk->read(null, $id));
-	}
-
-	function add() {
+	function contribute() {
 		if (!empty($this->data)) {
 			$this->Shutk->create();
 			if ($this->Shutk->save($this->data)) {
@@ -30,38 +22,6 @@ class ShutksController extends AppController {
 		$this->set(compact('shutkCategories'));
 	}
 
-	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid shutk', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Shutk->save($this->data)) {
-				$this->Session->setFlash(__('The shutk has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The shutk could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Shutk->read(null, $id);
-		}
-		$shutkCategories = $this->Shutk->ShutkCategory->find('list');
-		$this->set(compact('shutkCategories'));
-	}
-
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for shutk', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Shutk->delete($id)) {
-			$this->Session->setFlash(__('Shutk deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Shutk was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
 	function admin_index() {
 		$this->Shutk->recursive = 0;
 		$this->set('shutks', $this->paginate());

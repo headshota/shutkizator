@@ -19,6 +19,21 @@ class ShutkCategory extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	var $validate = array(
+		'name'=> array(
+			'notEmpty' => array(
+				'rule'		=> 'notEmpty',
+				'required'	=> true,
+				'message'	=> 'Category Name mustn\'t be empty'
+			)
+		),
+		'visible'=> array(
+			'boolean' => array(
+				'rule' 		=> array('boolean'),
+				'message'	=> 'Must be type of boolean'
+		))	
+	);
 
 }
 ?>
