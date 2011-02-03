@@ -2,10 +2,14 @@
 class ShutksController extends AppController {
 
 	var $name = 'Shutks';
+	var $components = array( 'RequestHandler' );
+	
 
-	function index() {
-		$this->Shutk->recursive = 0;
-		$this->set('shutks', $this->paginate());
+
+	function view() {	
+		$this->layout = 'ajax';
+		$randomShutk = $this->Shutk->find('all',array('order'=>array('RAND()'),'limit'=>1));
+		$this->set('shutk', $randomShutk[0]);
 	}
 
 	function contribute() {

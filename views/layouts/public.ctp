@@ -10,8 +10,9 @@
 	<?php echo $this->Html->css('public'); ?>
 	<?php echo $this->Html->css('jquery-ui-1.8.9.custom'); ?>
 	
-	<?php echo $this->Javascript->link('jquery-1.5.min.js'); ?>
-	<?php echo $this->Javascript->link('jquery-ui-1.8.9.custom.min.js'); ?>
+	<?php echo $this->Javascript->link('jquery-1.5.min'); ?>
+	<?php echo $this->Javascript->link('jquery-ui-1.8.9.custom.min'); ?>
+	<?php echo $this->Javascript->link('main'); ?>
 </head>
 <body>
 <?php echo $content_for_layout; ?>

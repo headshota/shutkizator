@@ -28,8 +28,8 @@ class Shutk extends AppModel {
 			'message' 	=> 'Field mustn\'t be empty!'
 		),
 		'range'=>array(
-			'rule'		=> array('maxLength',10),
-			'message'	=> 'Joke must be not more than 300 characters long.'
+			'rule'		=> array('maxLength',500),
+			'message'	=> 'Joke must be not more than 500 characters long.'
 		)),
 		
 	'visible'=> array(
