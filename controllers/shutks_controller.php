@@ -1,9 +1,9 @@
 <?php
 class ShutksController extends AppController {
 
-	var $name = 'Shutks';
-	var $components = array( 'RequestHandler' );
-
+	var $name 			= 'Shutks';
+	var $components 	= array( 'RequestHandler' );
+	var $helpers 		= array('Html','Form','Session','Javascript','Text');
 
 	function view() {	
 		$this->layout = 'ajax';

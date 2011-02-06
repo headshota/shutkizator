@@ -45,5 +45,14 @@ class Shutk extends AppModel {
 		))
 	
 	);
+	
+	
+	function beforeSave(){
+	
+		$this->data['Shutk']['name'] = strip_tags($this->data['Shutk']['name']);
+		$this->data['Shutk']['text'] = strip_tags($this->data['Shutk']['text']);
+		
+		return true;
+	}
 }
 ?>

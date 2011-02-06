@@ -24,8 +24,8 @@
 		<td>
 			<?php echo $this->Html->link($shutk['ShutkCategory']['name'], array('controller' => 'shutk_categories', 'action' => 'view', $shutk['ShutkCategory']['id'])); ?>
 		</td>
-		<td><?php echo $shutk['Shutk']['name']; ?>&nbsp;</td>
-		<td><?php echo $shutk['Shutk']['text']; ?>&nbsp;</td>
+		<td><?php echo $this->Text->truncate($shutk['Shutk']['name'],30,array('ending'=>'...','exact'=>false)); ?>&nbsp;</td>
+		<td><?php echo	$this->Text->truncate($shutk['Shutk']['text'],70,array('ending'=>'...','exact'=>false)); ?>&nbsp;</td>
 		<td><?php echo $shutk['Shutk']['visible']; ?>&nbsp;</td>
 		<td><?php echo $shutk['Shutk']['created']; ?>&nbsp;</td>
 		<td><?php echo $shutk['Shutk']['modified']; ?>&nbsp;</td>

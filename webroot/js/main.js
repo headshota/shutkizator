@@ -5,16 +5,9 @@ $(document).ready(function(){
 
 	$("#generateBtn").click(function(event){
 		event.preventDefault();
-		alert('test');
-		$.ajax({
-			   type: "POST",
-			   url: "http://avoe.ge/index.php",
-			   data: "",
-			   success: function(msg){
-				 alert( "Data Saved: " + msg );
-			   }
-			 });	
-		/* $.ajax({		
+		
+	
+		$.ajax({		
 		'type'	: 'GET',
 		'url'		: 'shutks/view',
 		'success' 	: function(data){	
@@ -32,7 +25,7 @@ $(document).ready(function(){
 			$("#shutkDialog").dialog('open');
 			return false;
 		}
-		});	 */
+		});
 
 	});
 	
