@@ -44,7 +44,7 @@ class PagesController extends AppController {
  * @var array
  * @access public
  */
-	var $helpers = array('Html');
+	var $helpers = array('Html','Form','Javascript','Session');
 
 /**
  * This controller does not use a model
@@ -59,8 +59,14 @@ class PagesController extends AppController {
  *
  * @param mixed What page to display
  * @access public
- */
+ */	
+	function beforeFilter(){
+		parent::beforeFilter();
+		print_r($this->_facebook->getUser());
+	}
 	function display() {
+		//
+		 
 		$this->layout = 'public';
 		$path = func_get_args();
 

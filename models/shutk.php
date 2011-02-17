@@ -30,6 +30,10 @@ class Shutk extends AppModel {
 		'range'=>array(
 			'rule'		=> array('maxLength',500),
 			'message'	=> 'Joke must be not more than 500 characters long.'
+		),
+		'startsring'=> array(
+			'rule'		=> array('custom', '/^ხოოოდა,(.|\n|\r)+$/'),
+			'message'	=> 'Joke must start with the string \'ხოოოდა\' followed by comma!!!'
 		)),
 		
 	'visible'=> array(
@@ -48,9 +52,10 @@ class Shutk extends AppModel {
 	
 	
 	function beforeSave(){
-	
+		
 		$this->data['Shutk']['name'] = strip_tags($this->data['Shutk']['name']);
-		$this->data['Shutk']['text'] = strip_tags($this->data['Shutk']['text']);
+		$this->data['Shutk']['text'] = nl2br($this->data['Shutk']['text']);
+	
 		
 		return true;
 	}

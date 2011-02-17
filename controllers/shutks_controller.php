@@ -4,13 +4,38 @@ class ShutksController extends AppController {
 	var $name 			= 'Shutks';
 	var $components 	= array( 'RequestHandler' );
 	var $helpers 		= array('Html','Form','Session','Javascript','Text');
-
-	function view() {	
-		$this->layout = 'ajax';
-		$randomShutk = $this->Shutk->find('all',array('order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));
+	var $paginate = array('limit' => 10, 'page' => 1); 
+	
+	
+	function beforeFilter(){
+		parent::beforeFilter();
+		Configure::write("debug",2);
+		//debug($this->_facebook);
+		$session=$this->_facebook->getSession();
+		//debug($session);
+		/* try {
+			$uid = $this->_facebook->getUser();
+			$me = $this->_facebook->api('/me');
+		} catch (FacebookApiException $e) {
+		echo $e;
+			error_log($e);
+		} */
 		
-		$shutk = json_encode($randomShutk[0]);
+		
+	}
+	function view() {		
+		if($this->Session->read('shutk_id')){	
+			$randomShutk = $this->Shutk->find('all',array('conditions' => array('Shutk.id <>' => $this->Session->read('shutk_id'),'Shutk.visible'=>1),'order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
+		}else {
+			$randomShutk = $this->Shutk->find('all',array('conditions'=>array('Shutk.visible'=>1),'order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
+		}		
+		
+		$shutk = $randomShutk[0];
+		$this->set('view_postback', true);
 		$this->set('shutk', $shutk);
+		$this->Session->write('shutk_id', $shutk['Shutk']['id']);
+		$this->layout = 'public';
+		$this->render('/pages/home');	
 	}
 
 	function contribute() {
@@ -55,6 +80,7 @@ class ShutksController extends AppController {
 	}
 
 	function admin_edit($id = null) {
+		//$this->Shutk->query("SET NAMES utf8");
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid shutk', true));
 			$this->redirect(array('action' => 'index'));
@@ -69,8 +95,11 @@ class ShutksController extends AppController {
 		}
 		if (empty($this->data)) {
 			$this->data = $this->Shutk->read(null, $id);
+			$this->data['Shutk']['text'] = preg_replace("/<br.+\/>/","",$this->data['Shutk']['text']);			
+			
 		}
 		$shutkCategories = $this->Shutk->ShutkCategory->find('list');
+		
 		$this->set(compact('shutkCategories'));
 	}
 
