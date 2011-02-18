@@ -9,7 +9,7 @@ class AppController extends Controller {
 	protected $_facebook;
 	
 	function beforeFilter(){		
-		
+		//testing
 		Configure::write('debug', 0);		
 		@mysql_query("SET NAMES utf8");
 		if(isset($this->Auth)){
