@@ -25,8 +25,8 @@
 				width		: 500,			
 				resizable	: false
 			});
-			
-			$("#shutkDialog").html("<?php echo preg_replace("/(\r)|(\n)/","",$shutk['Shutk']['text']); ?>");
+			var text = '<?php echo json_encode($shutk['Shutk']['text']); ?>';
+			$("#shutkDialog").html(text);
 			$("#shutkDialog").dialog({ title: "<?php echo $shutk['Shutk']['name']; ?>" });
 			$("#shutkDialog").dialog('open');
 </script>
