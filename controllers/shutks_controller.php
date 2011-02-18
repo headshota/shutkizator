@@ -23,17 +23,21 @@ class ShutksController extends AppController {
 		
 		
 	}
-	function view() {		
-		if($this->Session->read('shutk_id')){	
-			$randomShutk = $this->Shutk->find('all',array('conditions' => array('Shutk.id <>' => $this->Session->read('shutk_id'),'Shutk.visible'=>1),'order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
+	function view($id = null) {
+		if(!empty($id)){
+		$shutk = $this->Shutk->find('all',array('conditions' => array('Shutk.id' => $id),'limit'=>1,'recursive'=>-1));	
+		if(empty($shutk)){
+			$this->redirect(array('action' => 'view'));
+		}
 		}else {
-			$randomShutk = $this->Shutk->find('all',array('conditions'=>array('Shutk.visible'=>1),'order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
-		}		
+			$shutk = $this->Shutk->find('all',array('order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
+			$shutkId = $shutk[0]['Shutk']['id'];	
+			$this->redirect(array('action' => 'view/'.$shutkId));
+		}			
 		
-		$shutk = $randomShutk[0];
 		$this->set('view_postback', true);
-		$this->set('shutk', $shutk);
-		$this->Session->write('shutk_id', $shutk['Shutk']['id']);
+		$this->set('shutk', $shutk[0]);
+		$this->Session->write('shutk_id', $shutk[0]['Shutk']['id']);
 		$this->layout = 'public';
 		$this->render('/pages/home');	
 	}
