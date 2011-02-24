@@ -4,36 +4,31 @@ class ShutksController extends AppController {
 	var $name 			= 'Shutks';
 	var $components 	= array( 'RequestHandler' );
 	var $helpers 		= array('Html','Form','Session','Javascript','Text');
-	var $paginate = array('limit' => 10, 'page' => 1); 
+	var $paginate = array('limit' => 10, 'page' => 1,'order'=>'Shutk.id DESC'); 
 	
 	
 	function beforeFilter(){
 		parent::beforeFilter();
 		Configure::write("debug",2);
-		//debug($this->_facebook);
-		$session=$this->_facebook->getSession();
-		//debug($session);
-		/* try {
-			$uid = $this->_facebook->getUser();
-			$me = $this->_facebook->api('/me');
-		} catch (FacebookApiException $e) {
-		echo $e;
-			error_log($e);
-		} */
+	
 		
 		
 	}
-	function view() {		
-		if($this->Session->read('shutk_id')){	
-			$randomShutk = $this->Shutk->find('all',array('conditions' => array('Shutk.id <>' => $this->Session->read('shutk_id'),'Shutk.visible'=>1),'order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
+	function view($id = null) {
+		if(!empty($id)){
+		$shutk = $this->Shutk->find('all',array('conditions' => array('Shutk.id' => $id),'limit'=>1,'recursive'=>-1));	
+		if(empty($shutk)){
+			$this->redirect(array('action' => 'view'));
+		}
 		}else {
-			$randomShutk = $this->Shutk->find('all',array('conditions'=>array('Shutk.visible'=>1),'order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
-		}		
+			$shutk = $this->Shutk->find('all',array('order'=>array('RAND()'),'limit'=>1,'recursive'=>-1));	
+			$shutkId = $shutk[0]['Shutk']['id'];	
+			$this->redirect(array('action' => 'view/'.$shutkId));
+		}			
 		
-		$shutk = $randomShutk[0];
 		$this->set('view_postback', true);
-		$this->set('shutk', $shutk);
-		$this->Session->write('shutk_id', $shutk['Shutk']['id']);
+		$this->set('shutk', $shutk[0]);
+		$this->Session->write('shutk_id', $shutk[0]['Shutk']['id']);
 		$this->layout = 'public';
 		$this->render('/pages/home');	
 	}

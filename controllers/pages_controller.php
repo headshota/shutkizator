@@ -62,7 +62,6 @@ class PagesController extends AppController {
  */	
 	function beforeFilter(){
 		parent::beforeFilter();
-		print_r($this->_facebook->getUser());
 	}
 	function display() {
 		//

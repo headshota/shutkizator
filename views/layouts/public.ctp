@@ -15,6 +15,7 @@
 	<?php echo $this->Javascript->link('main'); ?>
 </head>
 <body>
+<?php echo $this->Session->flash(); ?>
 <?php echo $content_for_layout; ?>
 </body>
 </html>
