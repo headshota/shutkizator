@@ -24,7 +24,7 @@ class AppController extends Controller {
 		}
 		
 	}
- 
+ // init Facebook Api
 	private function fbInit(){
 				
 		$this->_facebook = new Facebook(array('appId'  => $this->_AP_KEY, 
