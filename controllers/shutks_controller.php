@@ -32,6 +32,20 @@ class ShutksController extends AppController {
 		$this->layout = 'public';
 		$this->render('/pages/home');	
 	}
+	
+	function feed($id){
+		if(!empty($id)){
+			$this->data = $this->Shutk->read(null, $id);			
+			try{
+			$this->_facebook->api('/me/feed','post',array('access_token'=>urlencode($this->_fb_session['access_token']),'message'=>strip_tags($this->data['Shutk']['text'].' (shared from Shutkizator)')));
+			}catch(Exception $ex){
+			$this->Session->setFlash('მოხდა შეცდომა: '.$ex);
+			$this->redirect('/shutks/view/'.$id);
+			}
+			$this->Session->setFlash('შუტკა დაიპოსტა თქვენს კედელზე!');
+			$this->redirect('/shutks/view/'.$id);
+		}	
+	}
 
 	function contribute() {
 		if (!empty($this->data)) {

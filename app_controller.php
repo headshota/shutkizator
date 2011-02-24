@@ -64,7 +64,7 @@ class AppController extends Controller {
 	    $this->Auth->loginRedirect = array('controller' => 'shutks', 'action' => 'admin/index');
 	//	$this->Auth->autoRedirect = false;
 	//	$this->Auth->authorize = 'controller';
-		$this->Auth->allow('index', 'view','home','display');
+		$this->Auth->allow('index', 'view','home','display','feed');
 	}
  
     function beforeRender () {

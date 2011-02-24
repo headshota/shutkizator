@@ -50,7 +50,7 @@
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-		define('CAKE_CORE_INCLUDE_PATH', 'F:' . DS . 'wamp' . DS . 'www' . DS . 'cake');
+		define('CAKE_CORE_INCLUDE_PATH', 'c:' . DS . 'wamp' . DS . 'www' . DS . 'cake');
 	}
 
 /**
