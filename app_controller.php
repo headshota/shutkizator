@@ -28,7 +28,7 @@ class AppController extends Controller {
 /*
 * Facebook Api
 * 
-* Initialize Facebook object, Authorize and Get Session.
+* Initialize Facebook object, Authorize with post permission and Get Session.
 *
 */
 	private function fbInit(){
