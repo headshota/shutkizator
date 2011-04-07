@@ -24,7 +24,13 @@ class AppController extends Controller {
 		}
 		
 	}
- // init Facebook Api
+	
+/*
+* Facebook Api
+* 
+* Initialize Facebook object, Authorize and Get Session.
+*
+*/
 	private function fbInit(){
 				
 		$this->_facebook = new Facebook(array('appId'  => $this->_AP_KEY, 
@@ -42,9 +48,7 @@ class AppController extends Controller {
 					if(isset($_GET['installed'])&&$_GET['installed']==1){					
 						$this->redirect("http://apps.facebook.com/shutkizator/");
 					}
-//$this->redirect('https://www.facebook.com/dialog/oauth?client_id=194547823907584&redirect_uri=http://bakuradze.com/shutkizator&scope=publish_stream');
-					//$feed = $this->_facebook->api("/me/feed",'post',array('access_token'=>urlencode($this->_fb_session['access_token']),'message'=>'testing graph api: feed posts!!!'));
-					
+				
 				}
 				
 				$this->set("fb_user",$this->_fb_user);
