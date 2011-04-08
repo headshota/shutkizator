@@ -3,7 +3,7 @@ App::import('Vendor','facebook/src/facebook');
 
 class AppController extends Controller {
 	var $helpers 				= array('Html','Javascript','Form','Session');
-	var $components 			= array('Auth','Session');
+	var $components 			= array('Auth','Session','Acl');
 	protected $_AP_KEY 		= '194547823907584';
 	protected $_AP_SECRET 		= '94593c9d2872a7a313274a9613ce1919';
 	protected $_facebook;
