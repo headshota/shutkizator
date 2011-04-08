@@ -66,7 +66,7 @@ class AppController extends Controller {
 	private function auth(){	
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 	    $this->Auth->loginRedirect = array('controller' => 'shutks', 'action' => 'admin/index');	
-	//	$this->Auth->authorize = 'controller';
+	//	  $this->Auth->authorize = 'controller';
 		$this->Auth->allow('index', 'view','home','display','feed');
 	}
  
