@@ -34,10 +34,10 @@ class ShutksController extends AppController {
 	}
 	
 	function feed($id){
-		if(!empty($id)){
+		if(!empty($id)&&is_numeric($id)){
 			$this->data = $this->Shutk->read(null, $id);			
 			try{
-			$this->_facebook->api('/me/feed','post',array('access_token'=>urlencode($this->_fb_session['access_token']),'message'=>strip_tags($this->data['Shutk']['text'].' (shared from Shutkizator)')));
+			$this->_facebook->api('/me/feed','post',array('access_token'=>urlencode($this->_fb_session['access_token']),'message'=>strip_tags($this->data['Shutk']['name'].': '.$this->data['Shutk']['text'].' (shared from Shutkizator)')));
 			}catch(Exception $ex){
 			$this->Session->setFlash('მოხდა შეცდომა: '.$ex);
 			$this->redirect('/shutks/view/'.$id);
