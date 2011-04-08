@@ -2,7 +2,6 @@
 class ShutksController extends AppController {
 
 	var $name 			= 'Shutks';
-	var $components 	= array( 'RequestHandler' );
 	var $helpers 		= array('Html','Form','Session','Javascript','Text');
 	var $paginate = array('limit' => 10, 'page' => 1,'order'=>'Shutk.id DESC'); 
 	
