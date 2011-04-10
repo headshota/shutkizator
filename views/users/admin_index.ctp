@@ -3,7 +3,9 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('username');?></th>		
+			<th><?php echo $this->Paginator->sort('user_group_id');?></th>
+			<th><?php echo $this->Paginator->sort('username');?></th>
+			<th><?php echo $this->Paginator->sort('password');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('modified');?></th>
 			<th class="actions"><?php __('Actions');?></th>
@@ -18,7 +20,11 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $user['User']['id']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['username']; ?>&nbsp;</td>	
+		<td>
+			<?php echo $this->Html->link($user['UserGroup']['name'], array('controller' => 'user_groups', 'action' => 'view', $user['UserGroup']['id'])); ?>
+		</td>
+		<td><?php echo $user['User']['username']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['password']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['created']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['modified']; ?>&nbsp;</td>
 		<td class="actions">
@@ -47,5 +53,7 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New User', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List User Groups', true), array('controller' => 'user_groups', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User Group', true), array('controller' => 'user_groups', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

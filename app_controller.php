@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor','facebook/src/facebook');  
+//App::import('Vendor','facebook/src/facebook');  
 
 class AppController extends Controller {
 	var $helpers 				= array('Html','Javascript','Form','Session');
