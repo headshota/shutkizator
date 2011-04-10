@@ -1,5 +1,5 @@
 <?php
-//App::import('Vendor','facebook/src/facebook');  
+App::import('Vendor','facebook/src/facebook');  
 
 class AppController extends Controller {
 	var $helpers 				= array('Html','Javascript','Form','Session');
@@ -20,7 +20,7 @@ class AppController extends Controller {
 			$this->auth();		
 		}
 		if(!isset($this->params['admin'])||$this->params['admin']!=1){
-			$this->fbInit();
+			//$this->fbInit();
 		}
 		
 	}
