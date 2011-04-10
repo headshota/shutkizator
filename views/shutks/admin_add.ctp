@@ -1,6 +1,7 @@
 <div class="shutks form">
 <?php echo $this->Form->create('Shutk');?>
 	<fieldset>
+	
  		<legend><?php __('Admin Add Shutk'); ?></legend>
 	<?php
 		echo $this->Form->input('shutk_category_id');
