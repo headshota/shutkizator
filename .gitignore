@@ -1,1 +1,4 @@
 webroot/index.php
+.buildpath
+.project
+.settings/
