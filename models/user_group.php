@@ -21,6 +21,10 @@ class UserGroup extends AppModel {
 		)
 	);
 	
+	/*
+	* Method for acl component to get parent node
+	*/
+	
 	function parentNode() {
     if (!$this->id && empty($this->data)) {
         return null;
