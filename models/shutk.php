@@ -29,11 +29,11 @@ class Shutk extends AppModel {
 		),
 		'range'=>array(
 			'rule'		=> array('maxLength',500),
-			'message'	=> 'Joke must be not more than 500 characters long.'
+			'message'	=> 'Shutka must be not more than 500 characters long.'
 		),
 		'startsring'=> array(
 			'rule'		=> array('custom', '/^ხოოოდა,(.|\n|\r)+$/'),
-			'message'	=> 'Joke must start with the string \'ხოოოდა\' followed by comma!!!'
+			'message'	=> 'Shutka must start with the string \'ხოოოდა\' followed by a comma!!!'
 		)),
 		
 	'visible'=> array(
